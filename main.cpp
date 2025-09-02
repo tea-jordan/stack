@@ -7,9 +7,44 @@
 #include <iostream>
 #include "Stack.h"
 
+
+bool isValidParenString(const std::string& s) {
+
+    Stack<char> stack = Stack<char>();
+
+    for (int i = 0; i < s.length(); i++) {
+
+        char c = s[i];
+
+        // push any open parens onto the stack
+        if (c == '(' || c == '{' || c == '[') {
+            stack.push(s[i]);
+        }
+
+        if (c == ')' || c == '}' || c == ']') {
+             // if we encounter a close with no open, must be imbalanced
+             if (stack.isEmpty()) {
+                 return false;
+             }
+            // if here, there is something in the stack
+            char lastOpen = stack.pop();
+            if ((lastOpen == '(' && c != ')') || (lastOpen == '{' && c != '}') || (lastOpen == '[' && c != ']')) {
+                return false;
+            }
+        }
+    }
+
+    if (!stack.isEmpty()) {
+        return false;
+    }
+    return true;
+}
+
 int main() {
 
-    Stack stack = Stack();
+    std::cout << "\n ============================== Testing Integer Stack ==============================\n" << std::endl;
+
+    Stack<int> stack = Stack<int>();
 
     stack.push(10);
     stack.push(20);
@@ -25,6 +60,21 @@ int main() {
     stack.pop();
 
     std::cout << "After popping all elements, stack is empty?: " << stack.isEmpty() << std::endl;
+
+
+    std::cout << "\n ============================== Testing Char Stack for Parens ==============================\n" << std::endl;
+
+    std::string validParens = "()(){{[]}}[([()])]";
+    std::string invalidParens = "(((";
+    std::string invalidParensTwo = "}}}";
+    std::string invalidParensThree = "{}{}[}";
+    std::string invalidParensFour = "{}{}{)";
+
+    std::cout << validParens << " is valid? - " << isValidParenString(validParens) << std::endl;
+    std::cout << invalidParens << " is valid? - " << isValidParenString(invalidParens) << std::endl;
+    std::cout << invalidParensTwo << " is valid? - " << isValidParenString(invalidParensTwo) << std::endl;
+    std::cout << invalidParensThree << " is valid? - " << isValidParenString(invalidParensThree) << std::endl;
+    std::cout << invalidParensFour << " is valid? - " << isValidParenString(invalidParensFour) << std::endl;
 
     return 0;
 }

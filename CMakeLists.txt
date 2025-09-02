@@ -4,5 +4,6 @@ project(stack)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(stack main.cpp
-        Stack.cpp
-        Stack.h)
+        Stack.h
+        MinStack.h
+)
