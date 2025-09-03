@@ -14,3 +14,17 @@ the methods:
 * `isEmpty()` - bool for whether stack is empty. 
 
 ---
+
+# MinStack
+
+For the `NeetCode 150` Minimum Stack problem, a modified version 
+of a stack was created with the following operations:
+
+- `MinStack()`: creates a new MinStack object. 
+- `void push(int val)`: pushes an integer onto the stack. 
+- `void pop()` removes the element on the top of the stack. 
+- `int top()` returns the top element of the stack. 
+- `int getMin()` returns the current minimum element of the stack. 
+
+All operations run in O(1) time, and this is done so by having the `MinStack` object
+keep track of two stacks, one for the actual values, and the other for the minimum value.

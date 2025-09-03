@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include "Stack.h"
-
+#include "MinStack.h"
 
 bool isValidParenString(const std::string& s) {
 
@@ -75,6 +75,20 @@ int main() {
     std::cout << invalidParensTwo << " is valid? - " << isValidParenString(invalidParensTwo) << std::endl;
     std::cout << invalidParensThree << " is valid? - " << isValidParenString(invalidParensThree) << std::endl;
     std::cout << invalidParensFour << " is valid? - " << isValidParenString(invalidParensFour) << std::endl;
+
+    std::cout << "\n ============================== Testing MinStack ==============================\n" << std::endl;
+
+    MinStack minStack = MinStack();
+
+    minStack.push(3);
+    std::cout << "The top of the MinStack is: " <<
+        minStack.top() << " and the current minimum is: " << minStack.getMin()
+        << std::endl;
+
+    minStack.push(13);
+    std::cout << "The top of the MinStack is: " <<
+        minStack.top() << " and the current minimum is: " << minStack.getMin()
+        << std::endl;
 
     return 0;
 }
